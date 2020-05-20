@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: my-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       env: production
+   matchExpressions:
+#    - { key: env, operator: In, values: [production] }
+#    - { key: region, operator: In, values: [IN] }
+    
+
+  template:
+    metadata:
+      name: myrs-pod
+      labels:
+        env: production
+        region: IN
+    spec:
+      containers:
+       - name: myrs-container
+         image: httpd
